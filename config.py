@@ -8,5 +8,5 @@ class Config:
 
     # Configuración de la base de datos MySQL
     # Formato: mysql+pymysql://usuario:contraseña@host/nombre_db
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:admin@localhost/mi_app_db'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:7@49^!M&*TC2*g!tb*pR@c!x8@localhost/mi_app_db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False # Desactiva el seguimiento de modificaciones de objetos

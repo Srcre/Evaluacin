@@ -37,7 +37,7 @@ if __name__ == '__main__':
     # Creación de tablas de la base de datos (solo una vez)
     # Se recomienda ejecutar esto en un shell de Python o en un script de migración
     with app.app_context():
-        db.create_all()
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:7@49^!M&*TC2*g!tb*pR@c!x8@localhost/mi_app_db'
         print("Tablas de la base de datos creadas (si no existían).")
 
     app.run(debug=True) # debug=True para desarrollo, cambiar a False en producción

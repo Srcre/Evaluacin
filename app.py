@@ -54,6 +54,7 @@ if __name__ == '__main__':
     # Se recomienda ejecutar esto en un shell de Python o en un script de migración
     with app.app_context():
         app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:admin@localhost/mi_app_db'
+        db.create_all()
         print("Tablas de la base de datos creadas (si no existían).")
 
     app.run(debug=True) # debug=True para desarrollo, cambiar a False en producción

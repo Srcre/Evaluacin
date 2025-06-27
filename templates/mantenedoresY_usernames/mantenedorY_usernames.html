@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}MY{% endblock %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Nombres de Cuentas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        .badge-success, .badge-danger {
+            color: black !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Listado de Nombres de Cuentas</h3>
+        </div>
+        <div class="card-body">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+
+            <a href="{{ url_for('mantenedores_usernames.add_username') }}" class="btn btn-primary mb-3">Agregar Nueva Cuenta</a>
+
+            <table id="usernames_table" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre de Cuenta</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if users %}
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>
+                                    <a href="{{ url_for('mantenedores_usernames.edit_username', user_id=user.id) }}" class="btn btn-info btn-sm mr-2">Editar</a>
+
+                                    <form action="{{ url_for('mantenedores_usernames.toggle_username_status', user_id=user.id) }}" method="post" style="display:inline;">
+                                        <button type="submit" class="btn btn-sm {% if user.is_active %}btn-warning{% else %}btn-success{% endif %}"
+                                                onclick="return confirm('¿Estás seguro de que quieres {% if user.is_active %}desactivar{% else %}activar{% endif %} esta cuenta?');">
+                                            {% if user.is_active %}
+                                                Desactivar
+                                            {% else %}
+                                                Activar
+                                            {% endif %}
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="3" class="text-center">No hay cuentas registradas aún.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre de Cuenta</th>
+                        <th>Acciones</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+{% endblock %}

@@ -26,9 +26,9 @@ nav a:hover {
 }
 
 .container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
+    max-width: 1200px;
+    margin: 35px 415px;
+    padding: 20px ;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -104,4 +104,9 @@ form button:hover {
     background-color: #fff3cd;
     color: #856404;
     border: 1px solid #ffeeba;
+}
+
+.parrafo{
+    display: flex;
+    justify-content: center;
 }
